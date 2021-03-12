@@ -1,0 +1,106 @@
+Zestaw I
+Zadanie 0.
+
+#include <iostream>
+
+int main() {
+    std::cout<<"Hello, World!"<<std::endl;
+    return 0;
+}
+
+Zadanie 1.
+#include <iostream>
+
+int main() {
+    int x;
+    x = 5;
+    std::cout<<x<<std::endl;
+    return 0;
+}
+
+Zadanie 2.
+#include <iostream>
+
+int main() {
+    int a = 5;
+    int b = 7;
+    std::cout<<a*b<<std::endl;
+    return 0;
+}
+
+
+Zadanie 3.
+#include <iostream>
+
+int main() {
+    float h = 4;
+    float a = 6;
+    std::cout<<a*h/2<<std::endl;
+    return 0;
+}
+
+Zadanie 4.
+#include <iostream>
+
+int main() {
+    int h = 7;
+    int a = 3;
+    float v;
+    v = a*a*h/3;
+    std::cout<<v<<std::endl;
+    return 0;
+}
+
+Zadanie 5.
+#include <iostream>
+
+int main() {
+    int a;
+    std::cin >>a;
+    std::cout << 2*a << std::endl;
+    return 0;
+}
+
+Zadanie 6.
+#include <iostream>
+
+int main() {
+    int a;
+    int b;
+    std::cin >>a >>b;
+    std::cout << a*b << std::endl;
+    return 0;
+}
+
+Zadanie 7.
+#include <iostream>
+
+int main() {
+    float a,h;
+    std::cin>>a>>h;
+    std::cout<<a*h/2<<std::endl;
+    return 0;
+}
+
+Zadanie 8.
+#include <iostream>
+
+int main() {
+    float a,h;
+    std::cin>>a>>h;
+    std::cout<<a*h/3<<std::endl;
+    return 0;
+}
+
+Zadanie 9.
+#include <iostream>
+
+int main() {
+    float a,b,x;
+    std::cin>>a>>b;
+    x=-b/a;
+    std::cout<<x<<std::endl;
+    return 0;
+}
+
+
