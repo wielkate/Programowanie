@@ -1,0 +1,172 @@
+Zestaw II
+
+Zadanie 0.
+#include <iostream>
+
+int main() {
+  int a;
+  std::cin >> a;
+  if (a % 2 == 0) {
+	std::cout << "Parzysta" << std::endl;
+  } else {
+	std::cout << "Nieparzysta" << std::endl;
+  }
+
+  return 0;
+}
+
+Zadanie 1.
+#include <iostream>
+
+int main() {
+  float a;
+  std::cin >> a;
+  if (a > 0) {
+	std::cout << "Liczba dodatnia" << std::endl;
+  } else if (a < 0) {
+	std::cout << "Liczba ujemna" << std::endl;
+  } else {
+	std::cout << "Zero" << std::endl;
+  }
+  
+  return 0;
+}
+
+Zadanie 2.
+#include <iostream>
+
+int main() {
+  float a;
+  std::cin >> a;
+  if (a >= 90 && a <= 100) {
+	std::cout << "Bardzo dobry, 5.0" << std::endl;
+  } if (a >= 80 && a < 90) {
+	std::cout << "Dobry plus, 4.5" << std::endl;
+  } if (a >= 70 && a < 80) {
+	std::cout << "Dobry, 4.0" << std::endl;
+  } if (a >= 60 && a < 70) {
+	std::cout << "Dostateczny plus, 3.5" << std::endl;
+  } if (a >= 50 && a < 60) {
+	std::cout << "Dostateczny, 3.0" << std::endl;
+  } if (a < 50) {
+	std::cout << "Niedostateczny, 2.0" << std::endl;
+  }
+  
+  return 0;
+}
+
+Zadanie 3.
+#include <iostream>
+
+int main() {
+  float a, b, c;
+  std::cin >> a >> b >> c;
+  if (b >= a && c >= b) {
+	std::cout << "Porzadek niemalejacy" << std::endl;
+  } else {
+	std::cout << "Inny porzadek" << std::endl;
+  }
+  
+  return 0;
+}
+
+Zadanie 4.
+#include <iostream>
+
+int main() {
+  float a, b, c;
+  std::cin >> a >> b >> c;
+  if (a == b || b == c || a == c) {
+	std::cout << "Przynajmniej dwie z trzech zadanych liczb sa sobie równe. " << std::endl;
+  } else {
+	std::cout << "Nie sa" << std::endl;
+  }
+  return 0;
+}
+
+Zadanie 5.
+#include <iostream>
+
+int main() {
+  float a, b, c;
+  std::cin >> a >> b >> c;
+  if (a + b > c && a + c > b && b + c > a) {
+	std::cout << "Da sie skonstruowac trojkat" << std::endl;
+  } else {
+	std::cout << "Nie da sie" << std::endl;
+  }
+
+  return 0;
+}
+
+Zadanie 6.
+#include <iostream>
+
+int main() {
+  int x1, y1, x2, y2, r1, r2;
+  std::cout << "Podaj odpowiednio wspolrzedne x1, y1, x2, y1, y2, r1, r2" << std::endl;
+  std::cin >> x1 >> y1 >> x2 >> y2 >> r1 >> r2;
+  if (((x1 - x2) ^ 2) + ((y1 - y2) ^ 2) <= ((r1 + r2) ^ 2)) {
+	std::cout << "Maja puste przeciecie";
+  } else {
+	std::cout << "Maja niepuste przeciecie";
+  }
+
+  return 0;
+}
+
+Zadanie 7.
+#include <iostream>
+
+int main() {
+  float a, b, c;
+  std::cin >> a >> b >> c;
+  if (a <= b && a <= c) {
+	std::cout << "Nqjmniejsza liczba jest : " << a << std::endl;
+  } else if (b <= a && b <= c) {
+	std::cout << "Nqjmniejsza liczba jest : " << b << std::endl;
+  } else {
+	std::cout << "Nqjmniejsza liczba jest : " << c << std::endl;
+  }
+
+  return 0;
+}
+
+Zadanie 8.
+
+#include <iostream>
+
+int main() {
+  float a, b, c, d, x1, x2;
+
+  std::cin >> a >> b >> c;
+  d = b * b - 4 * a * c;
+  if (d > 0) {
+	x1 = (-b + sqrt(d)) / (2 * a);
+	x2 = (-b - sqrt(d)) / (2 * a);
+	std::cout << "Dwa pierwiastki rownania : " << x1 << " i " <<  x2 << std::endl;
+  } else if (d == 0) {
+	std::cout << "Jeden pierwiastek rownania : " << -b / (2 * a) << std::endl;
+  } else {
+	std::cout << "Brak rozwiazania" << std::endl;
+  }
+
+  return 0;
+}
+
+Zadanie 9.
+#include <iostream>
+
+int main() {
+  float t1, t2, m, d, z;
+  std::cin >> t1 >> t2 >> m;
+  d = t2 - t1;
+  if (d > 0) {
+	z = m * d / t1;
+	std::cout << "Zysk wynosi " << z << std::endl;
+  } else {
+	std::cout << "Niekorzysc " << std::endl;
+  }
+
+  return 0;
+}
