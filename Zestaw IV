@@ -308,21 +308,11 @@ int main() {
     }
   }
 
-  while (true) {
-    std::cout << "Enter a number to chek if it is a prime " << std::endl;
-    std::cin >> n;
-
-    if (n == -1) { // exit
-      return 0;
+  for (int i = 2; i < 1000; i++) {
+    if ( !B[i] ) {
+      std::cout << i << " ";
     }
-
-    else if (n == 0 || n == 1 || B[n] == true) {
-      std::cout << "It is NOT a prime " << std::endl;
-    }
-    else {
-      std::cout << "It is a prime " << std::endl; }
   }
 
   return 0;
 }
-  
