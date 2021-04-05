@@ -1,0 +1,328 @@
+Zadanie 0.
+#include<iostream>
+
+int main() {
+
+  int A[5], i = 0, j = 1;
+
+  while (j <= 9 && i < 5)
+  {
+	A[i] = j;
+	std::cout << A[i] << " ";
+	i++;
+	j += 2;
+
+  }
+
+  return 0;
+}
+
+Zadanie 1.
+#include <iostream>
+#include <cmath>
+
+int main() {
+  int A[40]; // wartosc nie ma wplywu
+  int j = 0; // licznik elementow
+  int n; // liczba elementów
+
+  float suma = 0; // dla arytmetycznej
+  float iloczyn = 1; // dla geometrycznej
+  float kwadrat = 0; // dla kwadratowej
+  float ulamek = 0; // dla harmonicznej
+
+
+  std::cout << "Z jakiej ilosci liczb sklada sie tablica ? : ";
+  std::cin >> n;
+
+  std::cout << "Podaj liczby " << std::endl;
+
+  while (j < n) {
+	std::cin >> A[j];
+
+	suma += A[j];
+	iloczyn *= A[j];
+	kwadrat += A[j] * A[j];
+	ulamek += 1.0 / A[j];
+	j++;
+  }
+
+  std::cout << "Srednia arytmetyczna " << n << " liczb wynosi: " << suma / n << std::endl;
+  std::cout << "Srednia geometryczna " << n << " liczb wynosi: " << pow(iloczyn, 1.0 / n) << std::endl;
+  std::cout << "Srednia kwadratowa " << n << " liczb wynosi: " << sqrt(kwadrat / n) << std::endl;
+  std::cout << "Srednia harmoniczna " << n << " liczb wynosi: " << n / ulamek << std::endl;
+
+  return 0;
+}
+
+Zadanie 2.
+#include <iostream>
+
+int main() {
+  int A[40];
+  int j = 0; // licznik elementow
+  int n; // liczba elementów
+
+  std::cout << "Z jakiej ilosci liczb sklada sie tablica ? : ";
+  std::cin >> n;
+
+  std::cout << "Podaj liczby " << std::endl;
+
+  while (j < n) {
+	std::cin >> A[j];
+	j++;
+  }
+
+  for (int i = j - 1; i >= 0; i--) {
+	std::cout << A[i] << " ";
+  }
+
+  return 0;
+}
+
+Zadanie 3.
+#include <iostream>
+
+int main() {
+  int A[5], B[5];
+  int n;
+
+  std::cout << "Przed przesunieciem: " << std::endl;
+
+  for (int i = 0; i < 5; i++) {
+	A[i] = 2 * i + 1;
+	std::cout << "A[" << i << "]=" << A[i] << " ";
+	B[i] = A[i];
+  }
+
+  std::cout << "O ile pol w prawo przesunac elementy tablicy? " << std::endl;
+  std::cin >> n;
+
+  for (int j = 0; j < 5; j++) {
+	A[(n + j) % 5] = B[j];
+  }
+
+  std::cout << "Po przesunieciu: " << std::endl;
+
+  for (int i = 0; i < 5; i++) {
+	std::cout << "A[" << i << "]=" << A[i] << " ";
+  }
+
+  return 0;
+}
+
+Zadanie 4.
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+int main() {
+  int B[12];
+  srand(time(NULL));
+
+  for (int i = 0; i < 12; i++) {
+	B[i] = 1 + rand() % 10;
+	std::cout << B[i] << " ";
+  }
+
+  return 0;
+}
+
+Zadanie 5.
+#include <iostream>
+
+int main() {
+  int A[40];
+  int j = 0; // licznik elementow
+  int n; // liczba elementów
+  int max = A[0];
+
+  std::cout << "Z jakiej ilosci liczb sklada sie tablica ? : ";
+  std::cin >> n;
+
+  std::cout << "Podaj liczby " << std::endl;
+
+  while (j < n) {
+	std::cin >> A[j];
+
+	if (A[j] > max) {
+	  max = A[j];
+	}
+
+	j++;
+  }
+
+  std::cout << max << std::endl;
+
+  return 0;
+}
+
+Zadanie 6.
+#include<iostream>
+
+int main() {
+  int L, maxL = 0; // liczba wystepowan
+  int M, maxM; // moda
+  int B[40];
+  int r = 0; // licznik elementow (tworzenie tablicy)
+  int n; // liczba elementów
+
+  std::cout << "Z jakiej ilosci liczb sklada sie tablica ? : " << std::endl;
+  std::cin >> n;
+
+  std::cout << "Podaj liczby " << std::endl;
+
+  while (r < n) {
+	std::cin >> B[r];
+	r++;
+  }
+
+  for (int i = 0; i < n; i++) {
+	M = B[i];
+	L = 0;
+	for (int j = 0; j < n; j++) if (B[j] == M) L++;
+	if (L > maxL) {
+	  maxL = L;
+	  maxM = M;
+	}
+  }
+
+  std::cout << "Moda : " << maxM << std::endl;
+  std::cout << "Ilosc wystepowan : " << maxL << std::endl;
+  
+  return 0;
+}
+
+Zadanie 7.
+#include <iostream>
+
+int main() {
+  int B[40];
+  int r = 0; // licznik (tworzeneie tablicy)
+  int n; // liczba elementów tablicy
+  int tmp; // zmienna pomocnicza
+
+  std::cout << "Z jakiej ilosci liczb sklada sie tablica ? : " << std::endl;
+  std::cin >> n;
+
+  std::cout << "Podaj liczby " << std::endl;
+
+  while (r < n) {
+	std::cin >> B[r];
+	r++;
+  }
+
+  for(int i = 0; i < n; i++) {
+	for(int r = 0; r < n; r++) {
+	  if(B[r-1] > B[r] ) {
+
+		tmp = B[r-1];
+		B[r-1] = B[r];
+		B[r] = tmp;
+	  }
+	}
+  }
+
+  for(int j = 0; j < n; j++)
+  {
+	std::cout << B[j] << " ";
+  }
+
+  return 0;
+  }
+  
+  Zadanie 8.
+#include<iostream>
+#include<cstdlib>
+#include<ctime>
+
+int main() {
+
+  int B[40];
+  int n; // liczba elementow tablicy
+  int tmp; // zmienna pomocnicza
+  int L, maxL = 0; // liczba wystepowan
+  int M, maxM; // moda
+
+  std::cout << "Z jakiej ilosci liczb sklada sie tablica ? : " << std::endl;
+  std::cin >> n;
+  srand(time(NULL));
+
+  // tab nieposortowana
+
+  for (int i = 0; i < n; i++) {
+	B[i] = 1 + rand() % 5;
+	std::cout << B[i] << " ";
+  }
+
+  // sortowanie
+  std::cout << " " << std::endl;
+
+  for (int i = 0; i < n; i++) {
+	for (int r = 0; r < n; r++) {
+	  if (B[r - 1] > B[r]) {
+
+		tmp = B[r - 1];
+		B[r - 1] = B[r];
+		B[r] = tmp;
+	  }
+	}
+  }
+
+  for (int j = 0; j < n; j++) {
+	std::cout << B[j] << " ";
+  }
+
+  std::cout << " " << std::endl;
+  // moda
+
+  for (int i = 0; i < n; i++) {
+	M = B[i];
+	L = 0;
+	for (int j = 0; j < n; j++) if (B[j] == M) L++;
+	if (L > maxL) {
+	  maxL = L;
+	  maxM = M;
+	}
+  }
+
+  std::cout << "Moda : " << maxM << std::endl;
+  std::cout << "Ilosc wystepowan : " << maxL << std::endl;
+
+  return 0;
+}
+
+Zadanie 9.
+#include<iostream>
+
+int main() {
+
+  bool B[1000];
+  int n;
+
+  for (int i = 2; i * i < 1000; i++) {
+    if (B[i] == false) {
+      for (int j = 2; i * j < 1000; j++) {
+        B[i * j] = true;
+      }
+    }
+  }
+
+  while (true) {
+    std::cout << "Enter a number to chek if it is a prime " << std::endl;
+    std::cin >> n;
+
+    if (n == -1) { // exit
+      return 0;
+    }
+
+    else if (n == 0 || n == 1 || B[n] == true) {
+      std::cout << "It is NOT a prime " << std::endl;
+    }
+    else {
+      std::cout << "It is a prime " << std::endl; }
+  }
+
+  return 0;
+}
+  
