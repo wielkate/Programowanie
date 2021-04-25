@@ -320,7 +320,6 @@ int main() {
   const int n = 15;
   int A[n][n] = {0};
   int jeden = 0;
-  int left, right, up, down;
 
   std::srand(time(nullptr));
 
