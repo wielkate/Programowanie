@@ -1,0 +1,370 @@
+Zestaw VI Wskazniki I.
+Zadanie 1.
+
+#include<iostream>
+
+int main() {
+
+  int rozmiar; // rozmiar tablicy
+  int potega = 1; // potega dwojki
+
+  std::cout << "Podaj rozmiar tablicy : " << std::endl;
+  std::cin >> rozmiar;
+
+  int *A; // wskaznik na tablice
+  A = new int[rozmiar]; // tablica
+
+  for (int i = 0; i < rozmiar; i++) {
+    potega *= 2;
+	A[i] = potega;
+	std::cout << A[i] << "   ";
+  }
+
+  delete[] A;
+
+  return 0;
+}
+
+Zadanie 2.
+
+#include<iostream>
+
+int main() {
+
+  int rozmiar; // rozmiar tablicy
+
+  std::cout << "Podaj rozmiar tablicy : " << std::endl;
+  std::cin >> rozmiar;
+
+  int *A; // wskaznik na tablice
+  A = new int[rozmiar]; // tablica
+
+  // wpisanie wartosci tablicy
+
+  for (int i = 0; i < rozmiar; i++) {
+	std::cin >> A[i];
+  }
+
+  std::cout << std::endl;
+
+  // wypisanie z ze zmiana ujemnych wartosci NA zero
+
+  for (int j = 0; j < rozmiar; j++) {
+	if (A[j] < 0) {
+	  A[j] = 0;
+	}
+	std::cout << A[j] << "   ";
+  }
+
+  delete[] A;
+
+  return 0;
+}
+
+// Zadanie 3.
+
+#include<iostream>
+
+int main() {
+
+  int rozmiar; // rozmiar tablicy
+  int suma = 0; // suma elementow
+  int i = 0; // licznik
+
+  std::cout << "Podaj rozmiar tablicy : " << std::endl;
+  std::cin >> rozmiar;
+
+  int *A; // wskaznik na tablice
+  A = new int[rozmiar]; // tablica
+
+  // wpisanie wartosci tablicy
+
+  while (i < rozmiar && suma <= 100) {
+	std::cin >> A[i];
+	suma += A[i];
+	i++;
+  }
+
+  // dopisanie zer do pozostalych elementow
+
+  while (i < rozmiar) {
+    A[i] = 0;
+    i++;
+  }
+
+  // wypisanie tablicy
+
+  for (int j = 0; j < rozmiar; j++) {
+    std::cout << A[j] << "   ";
+  }
+
+  delete[] A;
+
+  return 0;
+}
+
+Zadanie 4
+
+#include<iostream>
+
+int main() {
+
+  int rozmiar; // rozmiar tablicy
+  int i = 0; // licznik
+
+  std::cout << "Podaj rozmiar tablicy : " << std::endl;
+  std::cin >> rozmiar;
+
+  int *A; // wskaznik na tablice A
+  int *B; // wskaznik na tablice B
+
+  A = new int[rozmiar]; // tablica
+  B = new int[rozmiar]; // tablica
+
+  while (rozmiar > 0) {
+	std::cin >> *(A + i);
+	*(B + i) = *(A + i) % 3; // do B sa przypisane reszty
+
+	rozmiar--;
+	i++;
+  }
+
+  delete[] A;
+  delete[] B;
+
+  return 0;
+}
+
+Zadanie 5
+
+#include<iostream>
+#include<cstdlib>
+#include<ctime>
+
+  int main() {
+
+  int rozmiar; // rozmiar tablicy
+  int *A; // wskaznik na tablice
+
+  srand(time(NULL));
+
+  std::cout << "Prosze podac rozmiar tablicy : " << std::endl;
+  std::cin >> rozmiar;
+
+  A = new int[rozmiar]; // tablica
+
+  for (int i = 0; i < rozmiar; i++) {
+	  *(A + i) = rand() % 11; // losujemy liczby od zera do 10
+	  std::cout << *(A + i) << "   ";
+	}
+
+  delete [] A;
+
+  return 0;
+}
+
+Zadanie 6.
+
+#include<iostream>
+#include<cstdlib>
+#include<ctime>
+
+int main() {
+
+  int rozmiar; // rozmiar tablicy
+  int *A; // wskaznik na tablice
+  int licznik = 0; // licznik liczb parzystych
+
+  srand(time(NULL));
+
+  std::cout << "Podaj rozmiar tablicy : " << std::endl;
+  std::cin >> rozmiar;
+
+  A = new int[rozmiar]; // tablica
+
+  // wypisanie tablicy
+
+  for (int i = 0; i < rozmiar; i++) {
+	*(A + i) = rand() % 11; // losujemy liczby od zera do 10
+	std::cout << *(A + i) << "   ";
+
+ // warunek parzystosci
+
+	if (*(A + i) % 2 == 0) {
+	  licznik++;
+	}
+  }
+
+  std::cout << std::endl;
+  std::cout << "Liczba liczb parzystych = " << licznik << std::endl;
+
+  delete [] A;
+
+  return 0;
+}
+
+Zadanie 7.
+
+#include<iostream>
+#include<cstdlib>
+#include<ctime>
+
+int main() {
+
+  int rozmiar; // rozmiar tablicy
+  int *A; // wskaznik na tablice
+  int max = 0;
+
+  srand(time(NULL));
+
+  std::cout << "Podaj rozmiar tablicy : " << std::endl;
+  std::cin >> rozmiar;
+
+  A = new int[rozmiar]; // tablica
+
+  // wypisanie tablicy
+
+  for (int i = 0; i < rozmiar; i++) {
+	*(A + i) = 0 + rand() % 11;
+	std::cout << *(A + i) << "   ";
+
+	if (*(A + i) > max) {
+	  max = *(A + i);
+	}
+  }
+
+  std::cout << std::endl;
+  std::cout << "Element maksymalny = " << max << std::endl;
+
+  delete [] A;
+
+  return 0;
+}
+
+Zadanie 8.
+
+#include<iostream>
+#include<cstdlib>
+#include<ctime>
+
+int main() {
+
+  int size; // size tablicy
+  int *A; // wskaznik na tablice
+
+  srand(time(NULL));
+
+  std::cout << "Podaj size tablicy : " << std::endl;
+  std::cin >> size;
+
+  A = new int[size]; // tablica
+
+  // TABLICA PRZED ODWRACANIEM
+
+  std::cout << "Tablica przed odwracaniem " << std::endl;
+
+  for (int i = 0; i < size; i++) {
+	*(A + i) = 0 + rand() % 11;
+	std::cout << *(A + i) << "   ";
+  }
+
+  std::cout << std::endl;
+
+  // ODWRACANIE
+
+  int num_switches = 0; // licznik odwracan
+  int num_switches_to_be = size / 2; // liczba przyszlych odwracan
+
+  int switch_index1 = 0; // indeks elementu startowego
+  int switch_index2 = size - 1; // indeks elementu ostatniego
+  int tmp; // zmienna pomocnicza
+
+  while (num_switches < num_switches_to_be) {
+
+	// zamiana elementow miejscami
+
+	tmp = *(A + switch_index1);
+	*(A + switch_index1) = *(A + switch_index2);
+	*(A + switch_index2) = tmp;
+
+	switch_index1++;
+	switch_index2--;
+	num_switches++;
+  }
+
+  std::cout << std::endl;
+
+  // TABLICA PO ODWRACANIU
+
+  std::cout << "Tablica po odwracaniu " << std::endl;
+
+  for (int i = 0; i < size; i++) {
+	std::cout << *(A + i) << "   ";
+  }
+
+  delete [] A;
+
+  return 0;
+}
+
+Zadanie 9
+
+#include<iostream>
+#include<cstdlib>
+#include<ctime>
+
+int main() {
+
+  int size; // size tablicy
+  int *A; // wskaznik na tablice A
+
+  srand(time(NULL));
+
+  std::cout << "Podaj rozmiar tablicy : " << std::endl;
+  std::cin >> size;
+
+  A = new int[size]; // tablica
+
+  // TABLICA PRZED PRZESUNIECIEM
+
+  std::cout << "Tablica przed przesunieciem " << std::endl;
+
+  for (int i = 0; i < size; i++) {
+	*(A + i) = rand() % 11;
+	std::cout << *(A + i) << "   ";
+  }
+
+  std::cout << std::endl;
+
+// PRZESUNIECIE O JEDEN W PRAWO
+
+//////////////////////////////////////////////////////////
+
+  int tmp; // zmienna pomocnicza
+
+  tmp = *(A + size - 1); // zapamietac element ostatni
+  int i = size - 1; // licznik przechodzenia przez tablice OD konca
+
+  while (i > 0) { // przesuniecie tablicy o JEDEN w prawo
+	*(A+ i % size) = *(A + (i - 1) % size);
+	i--;
+  }
+
+  *A = tmp; // element ostatni --> startowy
+
+///////////////////////////////////////////////////////////
+
+  std::cout << std::endl;
+
+  // TABLICA PO PRZESUNIECIU
+
+  std::cout << "Tablica po przesunieciu " << std::endl;
+
+  for (int k = 0; k < size; k++) {
+	std::cout << *(A + k) << "   ";
+  }
+
+  delete[] A;
+
+  return 0;
+}
