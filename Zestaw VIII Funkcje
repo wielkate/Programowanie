@@ -1,0 +1,288 @@
+Zestaw VIII. Funkcje
+
+Zadanie 0.
+// wersja latwiejsza
+
+#include <iostream>
+
+bool LiczbyZaprzyjaznione(int num_one, int num_two) {
+
+  // uwaga dziala tylko dla liczb do milionu
+
+  if (num_one == 220 && num_two == 284 || num_one == 284 && num_two == 220 ||
+	  num_one == 1184 && num_two == 1210 || num_one == 1210 && num_two == 1184 ||
+	  num_one == 2620 && num_two == 2924 || num_one == 2924 && num_two == 2620 ||
+
+	  num_one == 5020 && num_two == 5564 || num_one == 5564 && num_two == 5020 ||
+	  num_one == 6232 && num_two == 6368 || num_one == 6368 && num_two == 6232 ||
+	  num_one == 10744 && num_two == 10856 || num_one == 10856 && num_two == 10744 ||
+
+	  num_one == 12285 && num_two == 14595 || num_one == 14595 && num_two == 12285 ||
+	  num_one == 17296 && num_two == 18416 || num_one == 18416 && num_two == 17296 ||
+	  num_one == 63020 && num_two == 76084 || num_one == 76084 && num_two == 63020 ||
+
+	  num_one == 66928 && num_two == 66992 || num_one == 66992 && num_two == 66928 ||
+	  num_one == 67095 && num_two == 71145 || num_one == 71145 && num_two == 67095 ||
+	  num_one == 69615 && num_two == 87633 || num_one == 87633 && num_two == 69615 ||
+
+	  num_one == 79750 && num_two == 88730 || num_one == 88730 && num_two == 79750 ||
+	  num_one == 100485 && num_two == 124155 || num_one == 124155 && num_two == 100485 ||
+	  num_one == 122265 && num_two == 139815 || num_one == 139815 && num_two == 122265 ||
+
+	  num_one == 122368 && num_two == 123152 || num_one == 123152 && num_two == 122368 ||
+	  num_one == 141664 && num_two == 153176 || num_one == 153176 && num_two == 141664 ||
+	  num_one == 142310 && num_two == 168730 || num_one == 168730 && num_two == 142310 ||
+
+	  num_one == 171856 && num_two == 176336 || num_one == 176336 && num_two == 171856 ||
+	  num_one == 176272 && num_two == 180848 || num_one == 180848 && num_two == 176272 ||
+	  num_one == 185368 && num_two == 203432 || num_one == 203432 && num_two == 185368 ||
+
+	  num_one == 196724 && num_two == 202444 || num_one == 202444 && num_two == 196724 ||
+	  num_one == 280540 && num_two == 365084 || num_one == 365084 && num_two == 280540 ||
+	  num_one == 308620 && num_two == 389924 || num_one == 389924 && num_two == 308620 ||
+
+	  num_one == 319550 && num_two == 430402 || num_one == 430402 && num_two == 319550 ||
+	  num_one == 356408 && num_two == 399592 || num_one == 399592 && num_two == 356408 ||
+	  num_one == 437456 && num_two == 455344 || num_one == 455344 && num_two == 437456 ||
+
+	  num_one == 469028 && num_two == 486178 || num_one == 486178 && num_two == 469028 ||
+	  num_one == 503056 && num_two == 514736 || num_one == 514736 && num_two == 503056 ||
+	  num_one == 522405 && num_two == 525915 || num_one == 525915 && num_two == 522405 ||
+
+	  num_one == 600392 && num_two == 669688 || num_one == 669688 && num_two == 600392 ||
+	  num_one == 609928 && num_two == 686072 || num_one == 686072 && num_two == 609928 ||
+	  num_one == 624184 && num_two == 691256 || num_one == 691256 && num_two == 624184 ||
+
+	  num_one == 635624 && num_two == 712216 || num_one == 712216 && num_two == 635624 ||
+	  num_one == 643336 && num_two == 652664 || num_one == 652664 && num_two == 643336 ||
+	  num_one == 667964 && num_two == 783556 || num_one == 783556 && num_two == 667964 ||
+
+	  num_one == 726104 && num_two == 796696 || num_one == 796696 && num_two == 726104 ||
+	  num_one == 802725 && num_two == 863835 || num_one == 863835 && num_two == 802725 ||
+	  num_one == 879712 && num_two == 901424 || num_one == 901424 && num_two == 879712 ||
+
+	  num_one == 898216 && num_two == 980984 || num_one == 980984 && num_two == 898216) {
+
+	return true;
+  } else { return false; }
+
+} // koniec bool
+
+Zadanie 1.
+
+#include <iostream>
+#include <cmath>
+
+void root(double *x){
+  *x = sqrt(*x);
+}
+
+Zadanie 2.
+
+#include <iostream>
+
+int area(int a){  // pole kwadratu
+  a = a * a;
+  return a;
+}
+
+int area(int a, int b){ // pole prostokata
+  a = a * b;
+  return a;
+}
+
+int area(double r) { // pole kola
+  r = 3.14 * r * r;
+  return r;
+}
+
+int main() {
+
+  int kwadrat = 5;
+
+  int prosto_a = 3;
+  int prosto_b = 9;
+
+  double r = 10;
+
+  std::cout << "Pole kwadratu = " << area(kwadrat) << std::endl;
+  std::cout << "Pole prostokatu = " << area(prosto_a, prosto_b) << std::endl;
+  std::cout << "Pole kwadratu = " << area(r) << std::endl;
+
+}
+
+Zadanie 3.
+
+#include<iostream>
+
+int fib(int n) { // rekursja
+  if (n < 3) {
+	return 1;
+
+  } else {
+	return fib(n - 2) + fib(n - 1);
+  }
+}
+
+int main() {
+
+  int n;
+
+  std::cout << "Prosze podac numer liczby  " << std::endl;
+  std::cin >> n;
+
+  std::cout << "n-ta liczba ciagu = " << fib(n) << std::endl;
+
+  return 0;
+}
+
+Zadanie 4.
+
+#include<iostream>
+
+int fib(int n) { // iteracja
+
+  if (n < 3) {
+	return 1;
+  }
+  else {
+
+	int i = 2;
+	int a = 1; // pierwsza liczba ciágu
+	int b = 1; // druga liczba
+	int c; // trzecia
+
+	while (i < n) {
+	  c = a + b;
+	  a = b;
+	  b = c;
+	  i++;
+	}
+
+	return c;
+  }
+
+} // koniec fib
+
+int main() {
+  int n; // ilosc liczb
+
+  std::cout << "Podaj liczbe n : " << std::endl;
+  std::cin >> n;
+
+  std::cout << "n-ta liczba ciagu = " << fib(n) << std::endl;
+
+  return 0;
+}
+
+Zadanie 5.
+
+long long factorial(int n) { // rekursja
+
+  if (n < 2) {
+	return 1;
+  } else {
+	return n * factorial(n - 2);
+  }
+}
+
+Zadanie 6.
+
+long long factorial(int n) { // iteracja
+
+  if (n < 2) {
+	return 1;
+  } else {
+	int i = 1;
+	int silnia = 1;
+	while (i < n) {
+	  silnia *= n;
+	  n = n - 2;
+	}
+	return silnia;
+  }
+}
+
+Zadanie 7.
+
+#include <iostream>
+
+void yes() {
+  std::cout << "Yes" << std::endl;
+}
+
+void no() {
+  std::cout << "No" << std::endl;
+}
+
+void vote(void (*A)()) {
+}
+
+int main() {
+  char wybor;
+
+  std::cin >> wybor;
+  if (wybor == 'Y') {
+	vote(yes);
+  }
+
+  if (wybor == 'N') {
+    vote(no);
+  }
+
+    return 0;
+}
+
+Zadanie 8.
+
+#include <iostream>
+
+int add(int x, int y){
+  return x + y;
+}
+int multiply(int x, int y){
+  return x * y;
+}
+
+int operation(int (*A)(int, int), int x, int y){
+  return A(x,y);
+}
+
+int main() {
+  char dzialanie;
+  int x, y;
+
+  std::cin >> dzialanie;
+
+  if (dzialanie == 'a') {
+    std::cin >> x >> y;
+    std::cout << add(x,y);
+  }
+  else{
+	  std::cin >> x >> y;
+	  std::cout << multiply(x,y);
+  }
+
+  return 0;
+}
+Zadanie 9.
+// mozna tez spronowac zrobic cukl nieskonczony while true
+
+#include<iostream>
+
+int main() {
+
+  int A[5], i = 0, j = 1;
+  int size = 10000;
+
+
+  while ( i < size) {
+	A[i] = j;
+	std::cout << A[i] << " ";
+	i++;
+	j++;
+
+  }
+
+  return 0;
+}
