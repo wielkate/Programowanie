@@ -1,0 +1,439 @@
+Zestaw VII. Wskazniki II
+Zadanie 0.
+
+#include <iostream>
+
+int main() {
+
+  int a = 10;	// def zmiennych
+  int b = -365;
+  int tmp; // zmienna pomocnicza
+
+  int *pointer_a = &a;	// def wskaznikow (connect)
+  int *pointer_b = &b;
+  int *pointer_tmp = &tmp;
+
+  std::cout << "Na poczatku " << std::endl;
+  std::cout << "a = " << a << " b = " << b << std::endl;
+
+  *pointer_tmp = *pointer_a;	// zamiana miejscami
+  *pointer_a = *pointer_b;
+  *pointer_b = *pointer_tmp;
+
+  std::cout << "Na koncu " << std::endl;
+  std::cout << "a = " << a << " b = " << b << std::endl;
+
+  return 0;
+}
+
+Zadanie 1.
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+int main() {
+
+  // DEFINICJA
+
+  int size; // rozmiar tablicy
+
+  std::cout << "Prosze podac rozmiar tablicy " << std::endl;
+  std::cin >> size;
+
+  int tmp; // zmienna pomocnicza
+  int *pointer_tmp = &tmp;
+
+  int *A, *B; // wskazniki na tab
+
+  A = new int[size];
+  B = new int[size];
+
+  srand(time(NULL));
+
+  // WYPELNIENIE TAB
+
+  for (int i = 0; i < size; i++) {
+    *(A + i) = rand() % 11; // losujemy od zera do 10
+    *(B + i) = rand() % 11;
+  }
+
+  // PRINT PRZED ZAMIANA
+
+  for (int j = 0; j < size; j++) {
+    std::cout << *(A + j) << " " << *(B + j) << std::endl;
+  }
+
+  // ZAMIANA
+
+  for (int ctr = 0; ctr < size; ctr++) {
+    *pointer_tmp = *(A + ctr);
+    *(A + ctr) = *(B + ctr);
+    *(B + ctr) = *pointer_tmp;
+  }
+
+  // PRINT PO ZAMIANIE
+
+  std::cout << std::endl;
+
+  for (int j = 0; j < size; j++) {
+	std::cout << *(A + j) << " " << *(B + j) << std::endl;
+  }
+
+  delete [] A;
+  delete [] B;
+
+  return 0;
+}
+
+Zadanie 2.
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+int main() {
+
+  // DEFINICJA ZMIENNYCH
+
+  int size_one;
+  int size_two;
+
+  std::cout << "Prosze wprowadzic rozmiary tablic " << std::endl;
+  std::cin >> size_one >> size_two;
+
+  int size_exit = size_one + size_two;
+
+  int *array_one; // definicja wskaznikow
+  int *array_two;
+  int *array_exit;
+
+  array_one = new int[size_one];
+  array_two = new int[size_two];
+  array_exit = new int[size_exit];
+
+  // WYPELNIENIE TABLIC
+
+  for (int i = 0; i < size_one; i++) {
+	*(array_one + i) = rand() % 100;
+  }
+
+  for (int j = 0; j < size_two; j++) {
+	*(array_two + j) = rand() % 100;
+  }
+
+  // SORTOWANIE TAB ONE
+
+  int tmp; // zmienna pomocnicza
+  int *pointer_tmp = &tmp; // connect
+
+  for (int i = 0; i < size_one; i++) { // przejscie po tablicy raz
+	for (int j = 1; j < size_one; j++) { // przejscie po tablicy dwa
+	  if (*(array_one + j - 1) > *(array_one + j)) {
+
+		*pointer_tmp = *(array_one + j - 1);
+		*(array_one + j - 1) = *(array_one + j);
+		*(array_one + j) = *pointer_tmp;
+	  }
+	}
+  } // koniec sortowania ONE
+
+  // SORTOWANIE TAB TWO
+
+  for (int i = 0; i < size_two; i++) { // przejscie po tablicy raz
+	for (int j = 1; j < size_two; j++) { // przejscie po tablicy dwa
+	  if (*(array_two + j - 1) > *(array_two + j)) {
+
+		*pointer_tmp = *(array_two + j - 1);
+		*(array_two + j - 1) = *(array_two + j);
+		*(array_two + j) = *pointer_tmp;
+	  }
+	}
+  } // koniec sortowania TWO
+
+  // PRINT PRZED UNION
+
+  for (int i = 0; i < size_one; i++) {
+	std::cout << *(array_one + i) << " ";
+  }
+
+  std::cout << std::endl;
+
+  for (int j = 0; j < size_two; j++) {
+	std::cout << *(array_two + j) << " ";
+  }
+
+  // UNION
+
+  int ctr_one = 0;
+  int ctr_two = 0;
+  int ctr_exit = 0;
+
+  while (ctr_one < size_one) {
+	*(array_exit + ctr_one) = *(array_one + ctr_one);
+
+	ctr_one++;
+	ctr_exit = ctr_one;
+  }
+
+  while (ctr_two < size_two) {
+	*(array_exit + ctr_exit) = *(array_two + ctr_two);
+
+	ctr_two++;
+	ctr_exit++;
+  }
+
+  // SORTOWANIE TAB EXIT
+
+  for (int i = 0; i < size_exit; i++) { // przejscie po tablicy raz
+	for (int j = 1; j < size_exit; j++) { // przejscie po tablicy dwa
+	  if (*(array_exit + j - 1) > *(array_exit + j)) {
+
+		*pointer_tmp = *(array_exit + j - 1);
+		*(array_exit + j - 1) = *(array_exit + j);
+		*(array_exit + j) = *pointer_tmp;
+	  }
+	}
+  } // koniec sortowania EXIT
+
+  // PRINT PO UNION
+
+  std::cout << std::endl;
+
+  for (int j = 0; j < size_exit; j++) {
+	std::cout << *(array_exit + j) << " ";
+  }
+
+  return 0;
+}
+
+Zadanie 3
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+int main() {
+
+  int n, m; // stopnie wielomianow
+
+  std::cout << "Prosze wprowadzic stopnie wielomianow " << std::endl;
+  std::cin >> n >> m;
+
+  int *A, *B, *C; // trzy wielomiany
+
+  A = new int[n];
+  B = new int[m];
+  C = new int[n + m];
+
+  srand(time(NULL));
+
+  // WYPELNIENIE TABLIC
+
+  std::cout << std::endl;
+
+  for (int i = 0; i < n; i++) { // A
+	*(A + i) = rand() % 10;
+	std::cout << *(A + i) << " ";
+  }
+
+  std::cout << std::endl;
+
+  for (int i = 0; i < m; i++) { // B
+	*(B + i) = rand() % 10;
+	std::cout << *(B + i) << " ";
+  }
+
+  for (int i = 0; i < m; i++) { // C wypelnic zerami
+	*(C + i) = 0;
+  }
+
+  for (int i = 0; i < n; i++) {
+	for (int j = 0; j < m; j++) {
+	  // dodajemy bo istnieje przypadek j + i = i + j
+	  *(C + i +j) += *(A + i) * *(B + j); // wskaznik razy wskaznik
+	}
+  }
+
+  // PRINT
+
+  std::cout << std::endl;
+
+  for (int i = 0; i < m + n; i++) {
+	*(C + i) = rand() % 10;
+	std::cout << *(C + i) << " ";
+  }
+
+ delete []A;
+ delete []B;
+ delete []C;
+
+return 0;
+}
+
+Zadanie 4.
+// modyfikacja zadania 5 z zestawu 5.
+
+#include <iostream>
+
+int main() {
+
+  int N; // liczba naturalna
+
+  std::cout << "Prosze wprowadzic liczbe naturalna " << std::endl;
+  std::cin >> N;
+
+  int **S = new int *[N]; // podwojny wskaznik
+
+  for (int i = 0; i < N; i++) {
+
+    *(S + i) = new int[i + 1]; // pomyslec
+
+	for (int j = 0; j <= i; j++) {
+
+	  if (j == i || j == 0) {
+		*(*(S + i) + j) = 1;
+
+	  } else {
+		*(*(S + i) + j) = *(*(S + (i - 1)) + (j - 1)) + *(*(S + (i - 1)) + j); // :(
+	  }
+
+	  std::cout << *(*(S + i) + j) << " ";
+	}
+	std::cout << std::endl;
+  }
+
+  for (int i = 0; i < N; i++) {
+	delete[] *(S + i);
+  }
+
+  delete[] S;
+
+return 0;
+}
+
+Zadanie 5.
+
+#include<iostream>
+#include<cstdlib>
+#include<ctime>
+
+int main() {
+
+  srand(time(NULL));
+
+  int one, two, three; // wymiary macierzy
+  std::cin >> one >> two >> three;
+
+  int ***D = new int **[one]; // dwie * na koncu
+
+  for (int a = 0; a < one; a++) { // jedna * na koncu
+    *(D + a) = new int *[two];
+
+	for (int b = 0; b < two; b++) { // zero * na koncu
+	  *(*(D + a) + b) = new int[three];
+
+	  for (int c = 0; c < three; c++) { // wypelnienie tab
+		D[a][b][c] = 0 + rand() % 256;
+	  }
+	}
+  }
+
+  // PRINT
+
+  for (int c = 0; c < three; c++) {
+	std::cout << std::endl;
+	std::cout << std::endl;
+
+	for (int a = 0; a < one; a++) {
+
+	  for (int b = 0; b < two; b++) {
+		std::cout << *(*(*(D + a) + b) + c) << "   ";
+	  }
+	  std::cout << std::endl;
+	}
+  }
+
+  for (int i = 0; i < one ; i++) {
+	for (int j = 0; j < two; j++) {
+	  delete[] *(*(D + i) + j);
+	}
+  }
+
+  for (int i = 0; i < one; i++){
+    delete[] *(D + i);
+  }
+
+  delete[] D;
+
+  return 0;
+}
+
+Zadanie 6.
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+int main() {
+
+  // DEFINICJA ZMIENNYCH
+
+  int size_one;
+  int size_two;
+
+  std::cout << "Prosze wprowadzic rozmiary tablic " << std::endl;
+  std::cin >> size_one >> size_two;
+
+  char *array_one; // definicja wskaznikow
+  char *array_two;
+
+  array_one = new char[size_one];
+  array_two = new char[size_two];
+
+  srand(time(NULL));
+
+  // WYPELNIENIE TABLIC
+
+  for (int i = 0; i < size_one; i++) {
+	*(array_one + i) = rand() % 100;
+  }
+
+  for (int j = 0; j < size_two; j++) {
+	*(array_two + j) = rand() % 100;
+  }
+
+  // PRINT
+
+  for (int i = 0; i < size_one; i++) {
+	std::cout << *(array_one + i) << " ";
+  }
+
+  std::cout << std::endl;
+
+  for (int j = 0; j < size_two; j++) {
+	std::cout << *(array_two + j) << " ";
+  }
+
+  // SUBSET
+
+  int ctr_element = 0; // licznik wystepowania elementu
+
+  for (int i = 0; i < size_one; i++) { // przejscie po tab pierszej
+	for (int j = 0; j < size_two; j++) { // przejscie po drugiej
+
+	  if (array_two[j] == array_one[i]) {
+		ctr_element++;
+	  }
+	}
+  }
+
+  // wynik logiczny
+
+  if (ctr_element == size_one) {
+	return true;
+
+  } else {
+	return false;
+  }
+}
