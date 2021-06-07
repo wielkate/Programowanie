@@ -1,0 +1,553 @@
+// Zestaw IX. Lancuchy znakow
+// Zadanie 0
+
+#include <iostream>
+
+bool Pal(std::string s){
+
+  for (int i = 0; i < s.length(); i++) {
+	if (s[i] != s[s.length() - 1 - i]){
+	  return false;
+	}
+  }
+    return true;
+}
+
+int main() {
+
+  std::string slowo = "anna";
+  std::cout << Pal(slowo);
+
+  return 0;
+}
+
+// Zadanie 1. Wersja jeden
+
+#include <iostream>
+
+std::string first(std::string s_one, std::string s_two){
+
+  if (s_one.length() < s_two.length()) {
+
+	for (int i = 0; i < s_one.length(); i++) { // tab one
+	  if (s_one[i] < s_two[i]){
+		return s_one;
+	  }
+	  if (s_two[i] < s_one[i]){
+		return s_two;
+	  }
+	}
+	return s_one;
+  }
+
+  else if (s_two.length() < s_one.length()){
+
+	for (int i = 0; i < s_two.length(); i++) { // tab two
+	  if (s_two[i] < s_one[i]){
+		return s_two;
+	  }
+	  if (s_one[i] < s_two[i]){
+		return s_one;
+	  }
+	}
+	return s_two;
+  }
+
+  else {
+
+	for (int i = 0; i < s_two.length(); i++) { // tab two
+	  if (s_two[i] < s_one[i]){
+		return s_two;
+	  }
+	  if (s_one[i] < s_two[i]){
+		return s_one;
+	  }
+	}
+	return s_two; // dowolne slowo
+  }
+
+}
+int main() {
+
+  std::string word_one = "anna";
+  std::string word_two = "abs";
+  std::cout << first(word_one, word_two);
+
+  return 0;
+}
+
+// Zadanie 1. Wersja dwa
+
+#include <iostream>
+
+std::string first(std::string s_one, std::string s_two) {
+
+  if (s_one < s_two) {
+	return s_one;
+  } else {
+	return s_two;
+  }
+}
+int main() {
+
+  std::string word_one = "anna";
+  std::string word_two = "abs";
+  std::cout << first(word_one, word_two);
+
+  return 0;
+}
+
+// Zadanie 2.
+
+#include <iostream>
+
+std::string reverse(std::string s){
+
+  char tmp; // zmienna pomocnicza
+
+  for (int i = 0; i < s.length(); i++) {
+
+    // zamiana miejscami
+	tmp = s[i];
+	s[i] = s[s.length() - 1 - i];
+	s[s.length() - 1 - i] = tmp;
+
+  }
+
+  return s;
+}
+
+// Zadanie 3.
+
+#include <iostream>
+
+std::string con(std::string s_one, std::string s_two){
+  return s_one + s_two;
+}
+
+int main(){
+  std::string one = "hello";
+  std::string two = "world";
+
+  std::cout << con(one,two) << std::endl;
+
+  return 0;
+}
+
+// Zadanie 4.
+
+#include <iostream>
+
+bool dirty(std::string s) {
+  for (char i : s) { // przejscie przez slowo
+	if ((i < 'a' || i > 'z') && (i < 'A' || i > 'Z')) { // poza zakresem alfabetu
+	  return true; // dirty slowo
+	}
+  }
+  return false; // clean slowo
+}
+
+int main() {
+
+  std::string slowo = "an5na";
+  std::cout << dirty(slowo);
+
+  return 0;
+}
+
+// Zadanie 5.
+
+#include <iostream>
+
+std::string filter(std::string slowo, char litera){
+
+  std::string slowo_exit; // nowe slowo wejsciowe DEF
+
+  for (char i : slowo) { // przejscie po slowie
+	if (i != litera) {
+	  slowo_exit += i; // dopisanie
+	}
+  }
+
+  return slowo_exit;
+}
+
+int main(){
+
+  std::string slowo = "kate";
+  char k = 'k';
+
+  std::cout << filter(slowo, k) << std::endl;
+
+  return 0;
+}
+
+// Zadanie 6.
+
+#include <iostream>
+#include <string>
+
+bool PESEL(std::string number) {
+
+  int suma = 0; // liczenie poprawnosci
+  int tmp; // zmienna pomocnicza
+  std::string memory; // zapamietac wartosc jedej komorki
+
+  for (int i = 0; i < 11; i++) { // PESEL zawiera 11 cyfr
+
+	if (i == 0 || i == 4 || i == 8) { // waga == 1
+	  memory = number[i];
+	  tmp = std::stoi(memory); // from STRING to INT
+	  suma += tmp;
+	}
+
+	if (i == 1 || i == 5 || i == 9) { // waga == 3
+	  memory = number[i];
+	  tmp = std::stoi(memory) * 3; // int tmp = number[i] - '0'
+	  suma += tmp;
+
+	}
+
+	if (i == 2 || i == 6) { // waga == 7
+	  memory = number[i];
+	  tmp = std::stoi(memory) * 7;
+	  suma += tmp;
+	}
+
+	if (i == 3 || i == 7) { // waga == 9
+	  memory = number[i];
+	  tmp = std::stoi(memory) * 9;
+	  suma += tmp;
+	}
+
+	tmp = std::stoi(memory); // zapamietac ostatni element
+
+  } // koniec przejscia po slowie
+
+  suma = 10 - (suma % 10);
+
+  if (suma == 10){ // wyjatek
+    suma = 0;
+  }
+
+  // SPRAWDZENIE
+
+  int last_element = std::stoi(number);
+  last_element %= 10; // ostatnia cyfra
+
+  if (suma == last_element){
+    std::cout << "Poprawnie" << std::endl;
+	return true;
+
+  } else{
+	std::cout << "NIEpoprawnie" << std::endl;
+	return false;
+  }
+
+}
+
+int main() {
+
+  std::string nr_pesel = "01270311563";
+  PESEL(nr_pesel);
+
+  return 0;
+}
+
+// Zadanie 7.
+
+#include <iostream>
+#include <cmath>
+#include <string>
+
+std::string bin2dec(std::string bin_word) {
+
+  // idea polega na zrobieniu dzialan na liczbach
+
+  int length = bin_word.length(); // liczba elementow w slowie
+
+  int bin_number = std::stoi(bin_word); // zrobic int
+  int dec_number = 0;
+  std::string dec_word;
+
+  int potega;
+  int first_element; // poprzez dzielenie otzymac pierwszy element
+  int second_element;
+  int last_element; // poprzez reszte otzymac ostatni element
+
+  // i == 0 (przypadek wyjatkowy)
+
+  potega = pow(10.0,length - 1); // zmienszenie 1000 --> 100 --> 10
+  first_element = bin_number / potega; // poprzez dzielenie otzymac pierwszy element
+  last_element = bin_number % potega; // poprzez reszte otzymac ostatni element
+  second_element = last_element / pow(10.0,length - 2);
+
+  dec_number += first_element * 2 + second_element;
+  dec_word = std::to_string(dec_number);
+
+
+  // przypadek ogolny
+
+  for (int i = 1; i < length - 1; i++) {
+
+    // deinicja
+
+	potega = pow(10.0,length - 1 - i); // zmienszenie 1000 --> 100 --> 10
+	last_element = last_element % potega; // poprzez reszte otzymac ostatni element
+	second_element = last_element / pow(10.0,length - 2 - i);
+
+	// algorytm
+
+	dec_number = dec_number * 2 + second_element;
+	dec_word = std::to_string(dec_number);
+
+  }
+
+  if (bin_number == 1) {
+    dec_word = '1';
+  }
+
+  std::cout << bin_word << " --> " << dec_word << std::endl;
+  return dec_word;
+
+}
+
+int main() {
+
+  std::string liczba = "1111011011";
+  bin2dec(liczba);
+
+  return 0;
+}
+
+// Zadanie 8
+
+#include <iostream>
+#include <string>
+
+std::string dec2bin(std::string dec_word) {
+
+  // idea polega na zrobieniu dzialan na liczbach
+
+  int dec_number = std::stoi(dec_word);
+  std::string bin_word;
+
+
+  while (dec_number / 2 != 0) {
+	bin_word += std::to_string(dec_number % 2);
+	dec_number = dec_number / 2;
+  }
+
+  bin_word = bin_word + "1"; // dopisujemy jedynke na koncu
+
+  // ODWRACANIE
+
+  std::string new_bin_word;
+
+  for(int i = bin_word.length() - 1; i >= 0; i--) {
+    new_bin_word += bin_word[i];
+  }
+
+  std::cout << dec_word << " --> " << new_bin_word << std::endl; //print
+
+  return new_bin_word;
+
+}
+
+int main() {
+
+  std::string liczba = "287";
+  dec2bin(liczba);
+
+  return 0;
+}
+
+// Zadanie 9
+
+#include <iostream>
+#include <string>
+
+int main() {
+
+  std::string text;
+  std::cin >> text;
+
+  // DEF
+
+  int length = text.length(); // dlugosz tekstu
+  char array_letter[27] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
+						   'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'}; // tabela liter
+
+  int array_sum[27] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // tabela sum
+
+  int ctr = 0; // licznik
+
+  for (int i = 0; i < 26; i++) { // przejscie ALFABET
+	for (int j = 0; j < length; j++) { // przejscie TEKST
+
+	  if (text[j] == array_letter[i]) {
+		ctr++;
+	  }
+	  array_sum[i] = ctr;
+	}
+
+	ctr = 0; // wyzerowac licznik
+  }
+
+  // PRINT
+
+  for (int r = 0; r < 26; r++) {
+	std::cout << array_letter[r] << " = " << array_sum[r] << std::endl;
+  }
+
+  return 0;
+}
+
+// Zadanie 10
+
+#include <iostream>
+#include <string>
+
+std::string convert(std::string liczba_word) {
+
+  int array_arab[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+  std::string array_rzym[] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+
+  std::string exit_word; // wracamy slowo
+
+  // FROM rzym TO arab
+  // liczba WORD --> arab WORD
+
+  if (liczba_word.front() >= '1' && liczba_word.front() <= '9') { // pierwszy znak nalezy do ARAB
+
+    int arab_number = stoi(liczba_word); // teraz jest to arabska liczba
+
+	for (int i = 0; i < 13; i++) { // przejscie po tab ONE
+
+	  while (arab_number % array_arab[i] < arab_number) { // szukamy mniejszej liczby w tab
+
+	    exit_word += array_rzym[i]; // dopisujemy liczby tego samego indeksu
+	    arab_number -= array_arab[i]; // odjac liczbe
+	  }
+	}
+
+	// FROM arab TO rzym
+
+  } else {  // pierwszy znak nalezy do RZYM
+
+	int exit_num = 0; // wracamy najpierw liczbe
+
+	for (int i = 0; i < 13; i++) { // przejscie po tab TWO
+
+	  while (liczba_word.find(array_rzym[i]) == 0) {
+
+		exit_num += array_arab[i]; // dodajemy
+		liczba_word.erase(liczba_word.find_first_of(array_rzym[i]), array_rzym[i].length()); //////////////////////
+	  }
+	}
+
+	exit_word = std::to_string(exit_num); // tlumaczymy na slowo
+
+  } // koniec else
+
+  return exit_word;
+}
+
+int main() {
+
+  std::cout << convert("1001") << std::endl;
+  std::cout << convert("MI") << std::endl;
+
+  return 0;
+}
+
+// Zadanie 11
+
+#include <iostream>
+#include <cmath>
+#include <string>
+
+std::string change_base(std::string word, int base_one, int base_two){
+
+  // z DOWOLNEJ do DZIESIATEJ (zadanie 7)
+
+
+  int length = word.length(); // liczba elementow w slowie
+
+  int bin_number = std::stoi(word); // zrobic int
+  int dec_number = 0;
+  std::string dec_word;
+
+  int potega;
+
+  int first_element; // poprzez dzielenie otzymac pierwszy element
+  int second_element;
+  int last_element; // poprzez reszte otzymac ostatni element
+
+  // i == 0 (przypadek wyjatkowy)
+
+  potega = pow(10.0,length - 1); // np 561 / 10^2 = 5
+  first_element = bin_number / potega; // poprzez dzielenie otzymac pierwszy element
+  last_element = bin_number % potega; // poprzez reszte otzymac ostatni element
+  second_element = last_element / pow(10.0,length - 2);
+
+  dec_number += first_element * base_one + second_element; // razy BASE ONE
+
+  // przypadek ogolny
+
+  for (int i = 1; i < length - 1; i++) {
+
+	// deinicja
+
+	potega = pow(10.0,length - 1 - i); // zmienszenie 1000 --> 100 --> 10
+	last_element = last_element % potega; // poprzez reszte otzymac ostatni element
+	second_element = last_element / pow(10.0,length - 2 - i);
+
+	// algorytm
+
+	dec_number = dec_number * base_one + second_element; // razy BASE ONE
+
+  }
+
+  if (bin_number == 1) {
+	dec_number = 1;
+  }
+
+  std::cout << word << " --> " << dec_number << " --> "; // print
+
+  // z DZIESIETNEJ do DOWOLNEJ (zadanie 8)
+
+  std::string word_one; // def nowego slowa w nowym systemie
+
+
+  while (dec_number / base_two != 0) { // przez BASE TWO
+	word_one += std::to_string(dec_number % base_two);
+	dec_number = dec_number / base_two;
+  }
+
+  word_one = word_one + "1"; // dopisujemy jedynke na koncu
+
+  // ODWRACANIE
+
+  std::string word_exit; // def slowa wyjsciowego
+
+  for(int i = word_one.length() - 1; i >= 0; i--) {
+	word_exit += word_one[i];
+  }
+
+  std::cout << word_exit << std::endl; //print
+
+  return word_exit;
+
+}
+
+int main() {
+
+  int base1 = 8; // from
+  int base2 = 3; // to
+
+  std::string liczba = "451";
+  change_base(liczba, base1, base2);
+
+  return 0;
+}
